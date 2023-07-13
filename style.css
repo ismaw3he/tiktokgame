@@ -1,0 +1,290 @@
+html, body {
+    height: 100%;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body {
+    background: #75f96d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url("../img/bck.jpg");
+    flex-direction: column;
+
+}
+@keyframes rotateBall {
+    0% {
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+   }
+    50% {
+        transform: rotateY(360deg) rotateX(360deg) rotateZ(0deg);
+   }
+    100% {
+        transform: rotateY(720deg) rotateX(720deg) rotateZ(360deg);
+   }
+}
+@keyframes bounceBall {
+    0% {
+        transform: translateY(-70px) scale(1, 1);
+   }
+    15% {
+        transform: translateY(-56px) scale(1, 1);
+   }
+    45% {
+        transform: translateY(70px) scale(1, 1);
+   }
+    50% {
+        transform: translateY(73.5px) scale(1, 0.92);
+   }
+    55% {
+        transform: translateY(70px) scale(1, 0.95);
+   }
+    85% {
+        transform: translateY(-56px) scale(1, 1);
+   }
+    95% {
+        transform: translateY(-70px) scale(1, 1);
+   }
+    100% {
+        transform: translateY(-70px) scale(1, 1);
+   }
+}
+.ball, .ball2 {
+    animation-name: bounceBall;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    border-radius: 50%;
+    height: 20px;
+    position: relative;
+    transform: translateY(-70px);
+    transform-style: preserve-3d;
+    width: 20px;
+    z-index: 1;
+}
+
+.ball::before , .ball2::before{
+
+    background: radial-gradient(circle at 36px 20px, #2416ff, #3e42ff);
+    border: 2px solid #333;
+    border-radius: 50%;
+    content: '';
+    height: calc(100% + 6px);
+    left: -3px;
+    position: absolute;
+    top: -3px;
+    transform: translateZ(1vmin);
+    width: calc(100% + 6px);
+}
+
+.ball2::before {
+    background: radial-gradient(circle at 36px 20px, #ff16f8, #c302ff);
+}
+.ball .inner, .ball2 .inner {
+    animation-name: rotateBall;
+    animation-duration: 25s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    border-radius: 50%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    width: 100%;
+}
+.ball .line::before, .ball .line::after,
+.ball2 .line::before, .ball2 .line::after {
+    border: 2px solid #333;
+    border-radius: 50%;
+    content: '';
+    height: 99%;
+    position: absolute;
+    width: 99%;
+}
+.ball .line:before,
+.ball2 .line:before {
+    transform: rotate3d(0, 0, 0, 0);
+}
+.ball .line:after, .ball2 .line:after {
+    transform: rotate3d(1, 0, 0, 90deg);
+}
+.ball .line--two:before ,
+.ball2 .line--two:before{
+    transform: rotate3d(0, 0, 0, 2deg);
+}
+.ball .line--two:after,
+.ball2 .line--two:after  {
+    transform: rotate3d(1, 0, 0, 88eg);
+}
+.ball .oval::before, .ball .oval::after ,
+.ball2 .oval::before, .ball2 .oval::after {
+    border-top: 4px solid #333;
+    border-radius: 50%;
+    content: '';
+    height: 99%;
+    position: absolute;
+    width: 99%;
+}
+.ball .oval:before,
+.ball2 .oval:before {
+    transform: rotate3d(1, 0, 0, 45deg) translate3d(0, 0 6px);
+}
+.ball .oval:after,
+.ball2 .oval:after {
+    transform: rotate3d(1, 0, 0, -45deg) translate3d(0, 0, -6px);
+}
+.ball .oval--two:before ,
+.ball2 .oval--two:before {
+    transform: rotate3d(1, 0, 0, 135deg) translate3d(0, 0, -6px);
+}
+.ball .oval--two:after,
+.ball2 .oval--two:after {
+    transform: rotate3d(1, 0, 0, -135deg) translate3d(0, 0 6px);
+}
+@keyframes bounceShadow {
+    0% {
+        filter: blur(3px);
+        opacity: 0.6;
+        transform: translateY(73px) scale(0.5, 0.5);
+   }
+    45% {
+        filter: blur(1px);
+        opacity: 0.9;
+        transform: translateY(73px) scale(1, 1);
+   }
+    55% {
+        filter: blur(1px);
+        opacity: 0.9;
+        transform: translateY(73px) scale(1, 1);
+   }
+    100% {
+        filter: blur(3px);
+        opacity: 0.6;
+        transform: translateY(73px) scale(0.5, 0.5);
+   }
+}
+.shadow {
+    animation-name: bounceShadow;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    background: black;
+    filter: blur(2px);
+    border-radius: 50%;
+    height: 6px;
+    transform: translateY(73px);
+    width: 25px;
+}
+.main-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 130px;
+}
+.score-container{
+    position: relative;
+}
+.score-title {
+    position: absolute;
+    top: 41px;
+    left: 103px;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    width: 57px;
+    text-align: center;
+}
+.second-title{
+    left: 265px;
+}
+
+.name-title{
+    position: absolute;
+    top: 90px;
+    left: 40px;
+    font-size: 29px;
+    color: white;
+    font-weight: bold;
+    width: 57px;
+    text-align: center;
+}
+.second-name-title{
+    left: 280px;
+}
+
+.container1{
+    /* oglanix coxalt*/
+    transform: translateX(0px);
+}
+.container2{
+    /* qizlix azalt */
+    transform: translateX(0px);
+}
+.container{
+    margin-top: 125px;
+    display: flex;
+    flex-direction: column;
+}
+
+.score-img {
+    width: 425px;
+    margin-top: -85px;
+}
+
+.finish-container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 430px;
+}
+.finishpng{
+    width: 200px;
+    margin-top: 35px;
+}
+.finish-line{
+    height: 260px;
+    width: 0px;
+    border: 6px solid white;
+    border-style: dashed;
+    background-color: black;
+    margin-bottom: -40px;
+}
+
+.ball-title{
+    color: #312cff;
+    font-size: 25px;
+    position: absolute;
+    left: 15px;
+    font-weight: bold;
+    bottom: 135px;
+    font-family: system-ui;
+}
+.ball-title2{
+    color: #b300d5;
+    font-size: 25px;
+    position: absolute;
+    right: 15px;
+    font-weight: bold;
+    bottom: 135px;
+    font-family: system-ui;
+}
+
+.giftspng{
+    position: absolute;
+    width: 455px;
+    left: -11px;
+    top: 55px;
+}
+
+
+
+
+
+
+
+
+
+
+
